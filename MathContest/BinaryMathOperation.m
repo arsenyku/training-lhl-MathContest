@@ -50,4 +50,29 @@
     }
 }
 
+-(NSString *)displayableString{
+    switch (self.operation) {
+        case Plus:
+            return [NSString stringWithFormat:@"%@ + %@", self.leftOperand, self.rightOperand];
+            break;
+            
+        case Minus:
+            return [NSString stringWithFormat:@"%@ - %@", self.leftOperand, self.rightOperand];
+            break;
+            
+        case MultiplyBy:
+            return [NSString stringWithFormat:@"%@ * %@", self.leftOperand, self.rightOperand];
+            break;
+            
+        case DivideBy:
+            return [NSString stringWithFormat:@"%@ / %@", self.leftOperand, self.rightOperand];
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
+
 @end

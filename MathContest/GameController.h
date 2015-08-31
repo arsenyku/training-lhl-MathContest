@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) Player *playerThisTurn;
 @property (nonatomic, strong, readonly) BinaryMathOperation *currentQuestion;
 
+- (instancetype)initWithPlayer1Name:(NSString*)player1Name player2Name:(NSString*)player2Name;
 
 -(BinaryMathOperation*)newQuestion;
 -(BOOL)submitAnswer:(NSNumber*)answer;

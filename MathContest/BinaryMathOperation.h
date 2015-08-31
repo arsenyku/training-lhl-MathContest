@@ -26,4 +26,6 @@ typedef NS_ENUM(NSInteger, Operation) {
 
 -(instancetype)initWithOperand:(NSNumber*)left operation:(Operation)operation otherOperand:(NSNumber*)right;
 
+-(NSString *)displayableString;
+
 @end

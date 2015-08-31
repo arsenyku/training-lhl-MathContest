@@ -9,6 +9,7 @@
 #import "Player.h"
 
 @interface Player()
+@property (nonatomic, assign, readwrite) int score;
 @property (nonatomic, assign, readwrite) int livesLeft;
 @end
 
@@ -18,8 +19,16 @@
     self = [super init];
     if (self) {
         _livesLeft = 3;
+        _score = 0;
     }
     return self;
+}
+
+-(void)addPoint{
+    if ([self isDead])
+        return;
+    
+    self.score++;
 }
 
 

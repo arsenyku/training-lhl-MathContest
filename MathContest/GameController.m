@@ -33,14 +33,14 @@
         _player2 = [Player new];
         _player2.name = player2Name;
         
-        _playerThisTurn = _player2;
+        _playerThisTurn = _player1;
         [self newQuestion];
     }
     return self;
 }
 
--(int)randomIntFromLow:(int)low upToAndIncludingHigh:(int)high{
-    return arc4random_uniform(high-low+1) + low;
+-(NSNumber*)randomValueFromLow:(int)low upToAndIncludingHigh:(int)high{
+    return [NSNumber numberWithInt:(arc4random_uniform(high-low+1) + low)];
 }
 
 -(Player*)switchCurrentPlayer{
@@ -49,12 +49,11 @@
 }
 
 -(BinaryMathOperation*)newQuestion{
-    NSNumber *left = [NSNumber numberWithInt:[self randomIntFromLow:1 upToAndIncludingHigh:20]];
-    NSNumber *right = [NSNumber numberWithInt:[self randomIntFromLow:1 upToAndIncludingHigh:20]];
-    Operation operation = [self randomIntFromLow:(int)Plus upToAndIncludingHigh:(int)DivideBy];
+    NSNumber *left = [self randomValueFromLow:1 upToAndIncludingHigh:20];
+    NSNumber *right = [self randomValueFromLow:1 upToAndIncludingHigh:20];
+    Operation operation = [[self randomValueFromLow:(int)Plus upToAndIncludingHigh:(int)Minus] intValue];
     
     self.currentQuestion = [[BinaryMathOperation alloc] initWithOperand:left operation:operation otherOperand:right];
-    [self switchCurrentPlayer];
     return self.currentQuestion;
 }
 
@@ -63,13 +62,18 @@
 }
 
 -(BOOL)submitAnswer:(NSNumber*)answer{
+    NSLog(@"submitAnswer received: %@", answer);
     BOOL isCorrect = [self checkAnswer:answer];
     
-    if (isCorrect == NO){
+    if (isCorrect){
+        [self.playerThisTurn addPoint];
+    } else {
         [self.playerThisTurn loseLife];
     }
     
     [self switchCurrentPlayer];
+    [self newQuestion];
+    
     
     return isCorrect;
     

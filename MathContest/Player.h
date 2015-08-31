@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface Player : NSObject
-@property (nonatomic, assign, readonly) int livesLeft;
 @property (nonatomic, strong) NSString* name;
+@property (nonatomic, assign, readonly) int score;
+@property (nonatomic, assign, readonly) int livesLeft;
 
+-(void)addPoint;
 -(void)loseLife;
 -(BOOL)isDead;
 @end

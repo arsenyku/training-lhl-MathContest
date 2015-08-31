@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		1203457B1B94F86C0030E366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203457A1B94F86C0030E366 /* main.m */; };
 		1203457E1B94F86C0030E366 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203457D1B94F86C0030E366 /* AppDelegate.m */; };
-		120345811B94F86C0030E366 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 120345801B94F86C0030E366 /* ViewController.m */; };
+		120345811B94F86C0030E366 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 120345801B94F86C0030E366 /* GameViewController.m */; };
 		120345841B94F86C0030E366 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120345821B94F86C0030E366 /* Main.storyboard */; };
 		120345861B94F86C0030E366 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120345851B94F86C0030E366 /* Images.xcassets */; };
 		120345891B94F86C0030E366 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120345871B94F86C0030E366 /* LaunchScreen.xib */; };
 		120345951B94F86C0030E366 /* MathContestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 120345941B94F86C0030E366 /* MathContestTests.m */; };
+		120345A01B94FEAA0030E366 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1203459F1B94FEAA0030E366 /* GameController.m */; };
+		120345A31B94FEBB0030E366 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 120345A21B94FEBB0030E366 /* Player.m */; };
+		120345A61B94FF590030E366 /* BinaryMathOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 120345A51B94FF590030E366 /* BinaryMathOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +35,20 @@
 		1203457A1B94F86C0030E366 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1203457C1B94F86C0030E366 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1203457D1B94F86C0030E366 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1203457F1B94F86C0030E366 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		120345801B94F86C0030E366 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1203457F1B94F86C0030E366 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		120345801B94F86C0030E366 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		120345831B94F86C0030E366 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		120345851B94F86C0030E366 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		120345881B94F86C0030E366 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1203458E1B94F86C0030E366 /* MathContestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathContestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		120345931B94F86C0030E366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		120345941B94F86C0030E366 /* MathContestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MathContestTests.m; sourceTree = "<group>"; };
+		1203459E1B94FEAA0030E366 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		1203459F1B94FEAA0030E366 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		120345A11B94FEBB0030E366 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		120345A21B94FEBB0030E366 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		120345A41B94FF590030E366 /* BinaryMathOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BinaryMathOperation.h; sourceTree = "<group>"; };
+		120345A51B94FF590030E366 /* BinaryMathOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BinaryMathOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +92,14 @@
 			children = (
 				1203457C1B94F86C0030E366 /* AppDelegate.h */,
 				1203457D1B94F86C0030E366 /* AppDelegate.m */,
-				1203457F1B94F86C0030E366 /* ViewController.h */,
-				120345801B94F86C0030E366 /* ViewController.m */,
+				1203457F1B94F86C0030E366 /* GameViewController.h */,
+				120345801B94F86C0030E366 /* GameViewController.m */,
+				1203459E1B94FEAA0030E366 /* GameController.h */,
+				1203459F1B94FEAA0030E366 /* GameController.m */,
+				120345A11B94FEBB0030E366 /* Player.h */,
+				120345A21B94FEBB0030E366 /* Player.m */,
+				120345A41B94FF590030E366 /* BinaryMathOperation.h */,
+				120345A51B94FF590030E366 /* BinaryMathOperation.m */,
 				120345821B94F86C0030E366 /* Main.storyboard */,
 				120345851B94F86C0030E366 /* Images.xcassets */,
 				120345871B94F86C0030E366 /* LaunchScreen.xib */,
@@ -219,9 +234,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120345811B94F86C0030E366 /* ViewController.m in Sources */,
+				120345811B94F86C0030E366 /* GameViewController.m in Sources */,
+				120345A01B94FEAA0030E366 /* GameController.m in Sources */,
+				120345A61B94FF590030E366 /* BinaryMathOperation.m in Sources */,
 				1203457E1B94F86C0030E366 /* AppDelegate.m in Sources */,
 				1203457B1B94F86C0030E366 /* main.m in Sources */,
+				120345A31B94FEBB0030E366 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

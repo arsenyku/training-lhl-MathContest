@@ -34,10 +34,13 @@
     BOOL isCorrect = [self.game submitAnswer:answer];
     self.answerLabel.text = @"";
     [self refresh];
-    
-    [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@'s answer is %@correct", submitter.name, isCorrect ? @"" : @"NOT "]
-                       actionTitle:nil
-           dismissalDelayInSeconds:1];
+
+    if ([self.game winner] == nil){
+        [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@'s answer is %@correct", submitter.name, isCorrect ? @"" : @"NOT "]
+               dismissalDelayInSeconds:1
+                           actionTitle:nil
+                                action:nil];
+    }
 }
 
 - (IBAction)clearButtonPressed:(id)sender {
@@ -68,6 +71,7 @@
 }
 
 -(void)showGameAlertWithMessage:(NSString*)messageTitle
+        dismissalDelayInSeconds:(int)delay
                     actionTitle:(NSString*)actionTitle
                          action:(void (^)(UIAlertAction *action))handler{
     
@@ -83,26 +87,22 @@
         
         [alert addAction:defaultAction];
     }
-     [self presentViewController:alert animated:YES completion:nil];
+    
+    if (delay > 0){
+        [NSTimer scheduledTimerWithTimeInterval:delay
+                                         target:self
+                                       selector:@selector(dismissAlert)
+                                       userInfo:nil
+                                        repeats:NO];
+    }
+    
+    [self presentViewController:alert animated:YES completion:nil];
 
 }
 
 -(void)dismissAlert{
     NSLog(@"dismiss alert");
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)showGameAlertWithMessage:(NSString*)messageTitle actionTitle:(NSString*)actionTitle dismissalDelayInSeconds:(int)delay{
-    
-    [NSTimer scheduledTimerWithTimeInterval:delay
-                                     target:self
-                                   selector:@selector(dismissAlert)
-                                   userInfo:nil
-                                    repeats:NO];
-    
-    [self showGameAlertWithMessage:messageTitle
-                       actionTitle:actionTitle
-                            action:nil];
 }
 
 
@@ -117,6 +117,7 @@
 
     if ([self.game winner]){
         [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@ won the game!",[self.game winner].name]
+               dismissalDelayInSeconds:0
                            actionTitle:@"New Game!"
                                 action:^(UIAlertAction *action) {
                                     [self newGame];

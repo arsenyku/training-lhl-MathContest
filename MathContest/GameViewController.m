@@ -36,20 +36,20 @@
     Player* submitter = self.game.playerThisTurn;
     BinaryMathOperation *question = self.game.currentQuestion;
     BOOL isCorrect = [self.game submitAnswer:answer];
-    self.answerLabel.text = @"";
-    [self refresh];
+
     
-    if ([self.game winner] == nil){
-        NSString *correctAnswer = nil;
-        if (!isCorrect)
-            correctAnswer = [NSString stringWithFormat:@"%@ = %@", question.displayableString, question.solution];
-        
-        [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@'s answer is %@correct", submitter.name, isCorrect ? @"" : @"NOT "]
-                               message:correctAnswer
-               dismissalDelayInSeconds:1
-                           actionTitle:nil
-                                action:nil];
-    }
+    NSString *correctAnswer = nil;
+    if (!isCorrect)
+        correctAnswer = [NSString stringWithFormat:@"%@ = %@", question.displayableString, question.solution];
+    
+    [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@'s answer is %@correct", submitter.name, isCorrect ? @"" : @"NOT "]
+                           message:correctAnswer
+           dismissalDelayInSeconds:1
+                       actionTitle:nil
+                            action:nil];
+
+    self.answerLabel.text = @"";
+
 }
 
 - (IBAction)clearButtonPressed:(id)sender {
@@ -124,7 +124,10 @@
 }
 
 -(void)dismissAlert{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self refresh];
+                             }];
 }
 
 

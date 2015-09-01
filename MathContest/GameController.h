@@ -20,7 +20,6 @@
 
 - (instancetype)initWithPlayer1Name:(NSString*)player1Name player2Name:(NSString*)player2Name;
 
--(BinaryMathOperation*)newQuestion;
 -(BOOL)submitAnswer:(NSNumber*)answer;
 -(Player*)winner;
 

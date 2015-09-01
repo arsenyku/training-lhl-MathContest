@@ -20,6 +20,8 @@
 
 @implementation GameController
 
+#pragma mark - Initializers
+
 - (instancetype)init{
     return [self initWithPlayer1Name:@"P1" player2Name:@"P2"];
 }
@@ -38,6 +40,40 @@
     }
     return self;
 }
+
+#pragma mark - Public
+
+-(BOOL)submitAnswer:(NSNumber*)answer{
+    NSLog(@"submitAnswer received: %@", answer);
+    BOOL isCorrect = [self checkAnswer:answer];
+    
+    if (isCorrect){
+        [self.playerThisTurn addPoint];
+    } else {
+        [self.playerThisTurn loseLife];
+    }
+    
+    [self switchCurrentPlayer];
+    [self newQuestion];
+    
+    
+    return isCorrect;
+    
+}
+
+-(Player*)winner{
+    if ([self.player1 isDead] && ! [self.player2 isDead])
+        return self.player2;
+    
+    if ([self.player2 isDead] && ! [self.player1 isDead])
+        return self.player1;
+    
+    return nil;
+    
+}
+
+
+#pragma mark - Private
 
 -(NSNumber*)randomValueFromLow:(int)low upToAndIncludingHigh:(int)high{
     return [NSNumber numberWithInt:(arc4random_uniform(high-low+1) + low)];
@@ -61,32 +97,5 @@
 	return [self.currentQuestion.solution isEqual:answer];
 }
 
--(BOOL)submitAnswer:(NSNumber*)answer{
-    NSLog(@"submitAnswer received: %@", answer);
-    BOOL isCorrect = [self checkAnswer:answer];
-    
-    if (isCorrect){
-        [self.playerThisTurn addPoint];
-    } else {
-        [self.playerThisTurn loseLife];
-    }
-    
-    [self switchCurrentPlayer];
-    [self newQuestion];
-    
-    
-    return isCorrect;
-    
-}
 
--(Player*)winner{
-    if ([self.player1 isDead] && ! [self.player2 isDead])
-        return self.player2;
-
-    if ([self.player2 isDead] && ! [self.player1 isDead])
-        return self.player1;
-    
-    return nil;
-
-}
 @end

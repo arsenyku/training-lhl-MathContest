@@ -9,7 +9,6 @@
 #import "GameViewController.h"
 
 @interface GameViewController ()
-
 @property (nonatomic, strong) GameController* game;
 @property (weak, nonatomic) IBOutlet UILabel *scorePlayer1Label;
 @property (weak, nonatomic) IBOutlet UILabel *scorePlayer2Label;
@@ -20,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *winnerLabel;
 @end
 
 @implementation GameViewController
@@ -32,9 +30,14 @@
 }
 - (IBAction)enterButtonPressed:(id)sender {
     NSNumber *answer = [self numberFromAnswer];
-    [self.game submitAnswer:answer];
+    Player* submitter = self.game.playerThisTurn;
+    BOOL isCorrect = [self.game submitAnswer:answer];
     self.answerLabel.text = @"";
     [self refresh];
+    
+    [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@'s answer is %@correct", submitter.name, isCorrect ? @"" : @"NOT "]
+                       actionTitle:nil
+           dismissalDelayInSeconds:1];
 }
 
 - (IBAction)clearButtonPressed:(id)sender {
@@ -64,6 +67,45 @@
     return answer;
 }
 
+-(void)showGameAlertWithMessage:(NSString*)messageTitle
+                    actionTitle:(NSString*)actionTitle
+                         action:(void (^)(UIAlertAction *action))handler{
+    
+    UIAlertController* alert =
+    	[UIAlertController alertControllerWithTitle:messageTitle
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleAlert];
+    
+    if (actionTitle && handler){
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:actionTitle
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:handler];
+        
+        [alert addAction:defaultAction];
+    }
+     [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void)dismissAlert{
+    NSLog(@"dismiss alert");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)showGameAlertWithMessage:(NSString*)messageTitle actionTitle:(NSString*)actionTitle dismissalDelayInSeconds:(int)delay{
+    
+    [NSTimer scheduledTimerWithTimeInterval:delay
+                                     target:self
+                                   selector:@selector(dismissAlert)
+                                   userInfo:nil
+                                    repeats:NO];
+    
+    [self showGameAlertWithMessage:messageTitle
+                       actionTitle:actionTitle
+                            action:nil];
+}
+
+
 -(void)refresh{
     self.questionLabel.text = [NSString stringWithFormat:@"%@: %@",
                                self.game.playerThisTurn.name,
@@ -74,21 +116,27 @@
     self.livesPlayer2Label.text = [NSString stringWithFormat:@"Lives: %d", self.game.player2.livesLeft];
 
     if ([self.game winner]){
-        self.winnerLabel.text = [NSString stringWithFormat:@"WINNER: \n%@", [self.game winner].name];
-        self.winnerLabel.alpha = 1.0;
-    } else {
-        self.winnerLabel.alpha = 0.0;
+        [self showGameAlertWithMessage:[NSString stringWithFormat:@"%@ won the game!",[self.game winner].name]
+                           actionTitle:@"New Game!"
+                                action:^(UIAlertAction *action) {
+                                    [self newGame];
+                                }];
     }
-
+    
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.game = [[GameController alloc] initWithPlayer1Name:@"Khareem" player2Name:@"Julius"];
-    self.answerLabel.text = @"";
     self.answerLabel.layer.borderColor = [UIColor blackColor].CGColor;
     self.answerLabel.layer.borderWidth = 0.3f;
+    [self newGame];
+}
+
+-(void)newGame{
+    self.game = [[GameController alloc] initWithPlayer1Name:@"Khareem" player2Name:@"Julius"];
+    self.answerLabel.text = @"";
     [self refresh];
 }
 

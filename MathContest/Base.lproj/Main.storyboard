@@ -184,15 +184,6 @@
                                     <action selector="plusMinusButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="75e-9z-CA0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="winner goes here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" id="ooS-gd-sOc">
-                                <rect key="frame" x="53" y="127" width="229" height="281"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="0.097407475219291051" blue="0.13424945050920811" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <color key="textColor" red="1" green="0.097407475219999998" blue="0.13424945050000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -203,7 +194,6 @@
                         <outlet property="questionLabel" destination="MwL-AI-DAm" id="mDL-D9-WB5"/>
                         <outlet property="scorePlayer1Label" destination="eWt-LJ-Uzq" id="we7-MV-AyP"/>
                         <outlet property="scorePlayer2Label" destination="XBG-Mo-ODr" id="UE8-RW-A2d"/>
-                        <outlet property="winnerLabel" destination="ooS-gd-sOc" id="Kar-zs-74g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

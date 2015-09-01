@@ -51,7 +51,7 @@
 -(BinaryMathOperation*)newQuestion{
     NSNumber *left = [self randomValueFromLow:1 upToAndIncludingHigh:20];
     NSNumber *right = [self randomValueFromLow:1 upToAndIncludingHigh:20];
-    Operation operation = [[self randomValueFromLow:(int)Plus upToAndIncludingHigh:(int)Minus] intValue];
+    Operation operation = [[self randomValueFromLow:(int)Plus upToAndIncludingHigh:(int)MultiplyBy] intValue];
     
     self.currentQuestion = [[BinaryMathOperation alloc] initWithOperand:left operation:operation otherOperand:right];
     return self.currentQuestion;
@@ -77,5 +77,16 @@
     
     return isCorrect;
     
+}
+
+-(Player*)winner{
+    if ([self.player1 isDead] && ! [self.player2 isDead])
+        return self.player2;
+
+    if ([self.player2 isDead] && ! [self.player1 isDead])
+        return self.player1;
+    
+    return nil;
+
 }
 @end

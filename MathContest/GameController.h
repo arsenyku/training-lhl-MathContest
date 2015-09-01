@@ -22,5 +22,6 @@
 
 -(BinaryMathOperation*)newQuestion;
 -(BOOL)submitAnswer:(NSNumber*)answer;
+-(Player*)winner;
 
 @end

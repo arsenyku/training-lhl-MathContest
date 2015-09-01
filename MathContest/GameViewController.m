@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *winnerLabel;
 @end
 
 @implementation GameViewController
@@ -71,6 +72,14 @@
     self.scorePlayer2Label.text = [NSString stringWithFormat:@"%@ score: %d", self.game.player2.name, self.game.player2.score];
     self.livesPlayer1Label.text = [NSString stringWithFormat:@"Lives: %d", self.game.player1.livesLeft];
     self.livesPlayer2Label.text = [NSString stringWithFormat:@"Lives: %d", self.game.player2.livesLeft];
+
+    if ([self.game winner]){
+        self.winnerLabel.text = [NSString stringWithFormat:@"WINNER: \n%@", [self.game winner].name];
+        self.winnerLabel.alpha = 1.0;
+    } else {
+        self.winnerLabel.alpha = 0.0;
+    }
+
 }
 
 - (void)viewDidLoad {
@@ -78,6 +87,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.game = [[GameController alloc] initWithPlayer1Name:@"Khareem" player2Name:@"Julius"];
     self.answerLabel.text = @"";
+    self.answerLabel.layer.borderColor = [UIColor blackColor].CGColor;
+    self.answerLabel.layer.borderWidth = 0.3f;
     [self refresh];
 }
 
